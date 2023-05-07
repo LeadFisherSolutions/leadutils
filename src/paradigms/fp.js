@@ -1,3 +1,5 @@
+'use strict';
+
 // prettier-ignore
 const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
 const curry = (fn, arity = fn.length, ...args) =>
@@ -39,6 +41,12 @@ const once = fn => {
   };
 };
 
+const chain = ctx => func =>
+  function (...args) {
+    func(...args);
+    return ctx;
+  };
+
 const memoize = fn => {
   const cache = new Map();
   const cached = function (...args) {
@@ -60,4 +68,4 @@ const times = (n, fn, context = undefined) => {
   while (fn.call(context, i) !== false && ++i < n);
 };
 
-module.exports = { pipe, curry, debounce, throttle, memoize, once, pipeAsync, times };
+module.exports = { pipe, curry, debounce, throttle, memoize, once, pipeAsync, times, chain };

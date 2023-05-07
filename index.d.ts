@@ -2,9 +2,7 @@
 type XMLBuilder = { add: (url: { loc: string; time: string; priority: string }) => XMLBuilder; get: () => string };
 type MAP = { [k: string]: unknown };
 
-export const xml: {
-  createXml: (result: string) => XMLBuilder;
-};
+export const xml: { createXML: (result: string) => XMLBuilder };
 
 export const time: {
   compare: (fn: (a: number, b: number) => boolean) => (a: Date, b: Date) => boolean;
@@ -22,16 +20,9 @@ export const array: {
 export const utils: {
   random: (min: number, max?: number) => number;
   equals: (a: unknown, b: unknown) => boolean;
-  isValidJSON: (str: string) => boolean;
   mostPerformant: (fns: Function[], iterations?: number) => number;
-  timeTaken: <T extends Function>(fn: T) => ReturnType<T>;
-};
-
-export const files: {
-  fileExt: (name: string) => string;
-  fileName: (name: string) => string;
-  removeBOM: (s: string) => string;
   prettyBytes: (num: number, precision?: number, addSpace?: boolean) => string;
+  timeTaken: <T extends Function>(fn: T) => (...args: Parameters<T>) => ReturnType<T>;
 };
 
 export const string: {
@@ -42,9 +33,14 @@ export const string: {
   normalizeEmail: (email: string) => string;
   phonePurify: (phone: string) => string;
   phonePrettify: (phone: string) => string;
-  reverseString: (s: string) => string;
+  reverse: (s: string) => string;
   yesNo: (s: string) => boolean;
+  isValidJSON: (str: string) => boolean;
+  fromString: (str: string) => unknown;
+  toString: (target: any) => string;
   words: (s: string) => string[];
+  fileExt: (name: string) => string;
+  fileName: (name: string) => string;
 };
 
 export const obj: {
@@ -53,6 +49,13 @@ export const obj: {
   deepFlattenObject: <T extends Object>(deepFlattenObject: T, prefix?: string) => unknown;
   deepFreeze: <T extends Object>(obj: T) => T;
   dig: <T extends Object>(obj: T, target: string) => unknown;
+};
+
+export const oop: {
+  mixin: (target: object, source: object) => unknown;
+  defineSetter: (target: object) => (name: string, callback: (value: unknown) => void) => void;
+  defineGetter: (target: object) => (name: string, callback: () => unknown) => void;
+  setDefault: <T>(target: T, defaultValue: any) => T;
 };
 
 export const fp: {
@@ -65,10 +68,15 @@ export const fp: {
   memoize: <T extends Function>(fn: T) => T;
   times: <T extends Function>(n: number, fn: T, context?: unknown) => void;
   once: <T extends Function>(fn: T) => T;
+  chain: <T>(returnPoint: T) => <J extends (...args: unknown[]) => unknown>(fn: J) => J;
 };
 
 export const net: {
-  URLJoin: (...args: string[]) => string;
   intIP: (ip: string) => number;
-  // parseParams:
+  parseCookie: (cookie: string) => object;
+};
+
+export const crypto: {
+  hashPassword: (pass: string) => Promise<string>;
+  validatePassword: (pass: string, hash: string) => Promise<boolean>;
 };

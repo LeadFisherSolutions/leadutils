@@ -16,15 +16,6 @@ const equals = (a, b) => {
   return keys.every(k => equals(a[k], b[k]));
 };
 
-const isValidJSON = str => {
-  try {
-    JSON.parse(str);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-
 const mostPerformant = (fns, iterations = 10000) => {
   const times = fns.map(fn => {
     const before = performance.now();
@@ -34,11 +25,20 @@ const mostPerformant = (fns, iterations = 10000) => {
   return times.indexOf(Math.min(...times));
 };
 
-const timeTaken = callback => {
-  console.time('timeTaken');
-  const r = callback();
-  console.timeEnd('timeTaken');
-  return r;
+// prettier-ignore
+const timeTaken = callback => (...args) => {
+    console.time('timeTaken');
+    const r = callback(...args);
+    console.timeEnd('timeTaken');
+    return r;
+  };
+
+const prettyBytes = (num, precision = 3, addSpace = true) => {
+  const UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  if (Math.abs(num) < 1) return num + (addSpace ? ' ' : '') + UNITS[0];
+  const exponent = Math.min(Math.floor(Math.log10(num < 0 ? -num : num) / 3), UNITS.length - 1);
+  const n = Number(((num < 0 ? -num : num) / 1000 ** exponent).toPrecision(precision));
+  return (num < 0 ? '-' : '') + n + (addSpace ? ' ' : '') + UNITS[exponent];
 };
 
-module.exports = { random, equals, isValidJSON, mostPerformant, timeTaken };
+module.exports = { prettyBytes, random, equals, mostPerformant, timeTaken };

@@ -1,3 +1,5 @@
+'use strict';
+
 const compare = fn => (a, b) => fn(new Date(a).getTime(), new Date(b).getTime());
 
 const addZero = number => (number < 10 ? `0${number}` : `${number}`);

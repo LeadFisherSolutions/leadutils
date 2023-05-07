@@ -2,38 +2,6 @@
 
 const crypto = require('node:crypto');
 
-const generateUUID = crypto.randomUUID;
-
-const generateKey = (length, possible) => {
-  const base = possible.length;
-  let key = '';
-  for (let i = 0; i < length; i++) {
-    const index = crypto.randomInt(0, base);
-    key += possible[index];
-  }
-  return key;
-};
-
-const CRC_LEN = 4;
-
-const crcToken = (secret, key) => {
-  const md5 = crypto.createHash('md5').update(key + secret);
-  return md5.digest('hex').substring(0, CRC_LEN);
-};
-
-const generateToken = (secret, characters, length) => {
-  const key = generateKey(length - CRC_LEN, characters);
-  return key + crcToken(secret, key);
-};
-
-const validateToken = (secret, token) => {
-  if (!token) return false;
-  const len = token.length;
-  const crc = token.slice(len - CRC_LEN);
-  const key = token.slice(0, -CRC_LEN);
-  return crcToken(secret, key) === crc;
-};
-
 const SCRYPT_PARAMS = { N: 32768, r: 8, p: 1, maxmem: 64 * 1024 * 1024 };
 const SCRYPT_PREFIX = '$scrypt$N=32768,r=8,p=1,maxmem=67108864$';
 
@@ -96,12 +64,4 @@ const validatePassword = (password, serHash) => {
   });
 };
 
-module.exports = {
-  generateUUID,
-  generateKey,
-  crcToken,
-  generateToken,
-  validateToken,
-  hashPassword,
-  validatePassword,
-};
+module.exports = { hashPassword, validatePassword };
