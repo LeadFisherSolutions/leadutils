@@ -199,8 +199,8 @@ String templates
 ```javascript
 const utils = require('leadutils');
 const template = utils.string.template`Hello ${'put_here'} !`;
-template('Alex'); // Hello Alex !
-template('Admin'); // Hello Admin !
+template({put_here: 'Alex'}); // Hello Alex !
+template({put_here: 'Admin'); // Hello Admin !
 ```
 
 - #### yesNo
