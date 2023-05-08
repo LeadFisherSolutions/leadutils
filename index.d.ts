@@ -10,6 +10,7 @@ export const time: {
   formatDuration: (ms: number) => string;
   divideDuration: (ms: number) => { day: number; hour: number; minute: number; second: number; millisecond: number };
   datesDiff: (a: Date, b: Date, measure?: 'day' | 'hour' | 'minute' | 'second' | 'millisecond') => number;
+  duration: (time: string) => number;
 };
 
 export const array: {
