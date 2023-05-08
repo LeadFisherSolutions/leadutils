@@ -35,7 +35,7 @@ const normalizeEmail = email => {
 const fileExt = fileName => path.extname(fileName).replace('.', '').toLowerCase();
 const fileName = fileName => path.basename(fileName.substr(0, fileName.lastIndexOf('.')));
 
-export const toString = value => {
+const toString = value => {
   if (typeof value === 'string') return value;
   if (typeof value === 'object') return JSON.stringify(value);
   return String(value);
@@ -50,7 +50,7 @@ const isValidJSON = str => {
   }
 };
 
-export const fromString = value => {
+const fromString = value => {
   const descriptors = { false: false, true: true, null: null, undefined };
   if (value in descriptors) return descriptors[value];
   if (!isNaN(+value)) return Number(value);

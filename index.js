@@ -10,9 +10,8 @@ const read = dir =>
     return acc.push(loc), acc;
   }, []);
 
-const modules = read('./src').map(file => ({
+const modules = read(path.join(__dirname, 'src')).map(file => ({
   [path.basename(file.substring(0, file.lastIndexOf('.')))]: require(file),
 }));
 
-// console.log(Object.assign({}, ...modules));
 module.exports = Object.assign({}, ...modules);
