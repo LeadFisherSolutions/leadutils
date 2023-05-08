@@ -27,6 +27,25 @@ utils.time.prettify('h:m:s / D.M|Y', new Date()); // 18:50:54 / 07.05|2023
 utils.time.prettify('h-m-s.i', new Date()); // 18-50-54.045
 ```
 
+- #### duration
+
+Return duration in ms from string
+
+```ts
+ duration(time: string) => number;
+ // time is any combination of letters [dhms] with values
+ // d - Day; h - Hours; m - Minute; s - Second;
+ // Example: 1d 1h 1m 1s 90061000
+```
+
+```javascript
+const utils = require('leadutils');
+utils.time.duration('5s'); // 5000
+utils.time.duration('24h'); // 86400000
+utils.time.duration('1d'); // 86400000
+utils.time.duration('1d 1h 1m 5s'); // 90065000
+```
+
 - #### compare
 
 Create any dates compare functions

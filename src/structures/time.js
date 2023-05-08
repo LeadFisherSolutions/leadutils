@@ -1,5 +1,7 @@
 'use strict';
 
+const DURATION_UNITS = { d: 86400, h: 3600, m: 60, s: 1 };
+
 const compare = fn => (a, b) => fn(new Date(a).getTime(), new Date(b).getTime());
 
 const addZero = number => (number < 10 ? `0${number}` : `${number}`);
@@ -25,6 +27,17 @@ const divideDuration = ms => ({
   millisecond: Math.floor(ms) % 1000,
 });
 
+const duration = time => {
+  const ms = time.split(' ').reduce((acc, part) => {
+    const unit = part.slice(-1);
+    const value = parseInt(part.slice(0, -1));
+    const multiply = DURATION_UNITS[unit];
+    return (acc += value * multiply);
+  }, 0);
+
+  return ms * 1000;
+};
+
 const datesDiff = (dateInitial, dateFinal, measure = 'day') => divideDuration(dateFinal - dateInitial)[measure];
 
 const formatDuration = ms => {
@@ -36,4 +49,4 @@ const formatDuration = ms => {
     .join(', ');
 };
 
-module.exports = { compare, prettify, formatDuration, divideDuration, datesDiff };
+module.exports = { compare, prettify, formatDuration, divideDuration, datesDiff, duration };
