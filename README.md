@@ -143,27 +143,6 @@ const utils = require('leadutils');
 utils.utils.timeTaken((a, b) => a + b)(2 + 3); // return 5; log => timeTaken: 0.297ms
 ```
 
-### net
-
-- #### intIP
-
-Get ip integer interpretation
-
-```javascript
-const utils = require('leadutils');
-utils.net.intIP('127.0.0.1'); // 2130706433
-```
-
-- #### parseCookie
-
-Parse cookie from string
-
-```javascript
-const utils = require('leadutils');
-let cookie = 'test=123;';
-utils.net.parseCookie(cookie); // {test: 123}
-```
-
 ### xml
 
 - #### createXML
