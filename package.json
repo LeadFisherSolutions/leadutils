@@ -1,16 +1,19 @@
 {
-  "name": "leadfisher",
+  "name": "leadutils",
   "description": "Leadfisher utilities",
+  "author": "Alexander Ivanov <sashapop101@gmail.com>",
   "version": "1.0.0",
   "homepage": "https://leadfisher.ru",
-  "packageManager": "pnpm@7.26.0",
-  "private": true,
+  "packageManager": "npm@9.6.4",
   "type": "commonjs",
   "main": "index.js",
   "types": "index.d.ts",
   "keywords": [
     "utils",
-    "tools"
+    "tools",
+    "javascript",
+    "common",
+    "leadfisher"
   ],
   "scripts": {
     "test": "node --test && tsc",

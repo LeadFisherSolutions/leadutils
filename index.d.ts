@@ -75,9 +75,22 @@ export const fp: {
 export const net: {
   intIP: (ip: string) => number;
   parseCookie: (cookie: string) => object;
+  removePort: (str: string) => string;
 };
 
 export const crypto: {
   hashPassword: (pass: string) => Promise<string>;
   validatePassword: (pass: string, hash: string) => Promise<boolean>;
 };
+
+export class Semaphore {
+  constructor(concurrency: number, size?: number, timeout?: number);
+  concurrency: number;
+  counter: number;
+  timeout: number;
+  size: number;
+  empty: boolean;
+  queue: Array<QueueElement>;
+  enter(): Promise<void>;
+  leave(): void;
+}
