@@ -1,51 +1,54 @@
 'use strict';
 
 class Semaphore {
+  empty = true;
+  #queue = [];
+  #concurrency;
+  #counter;
+  #size;
+  #timeout;
+
   constructor(concurrency, size = 0, timeout = 0) {
-    this.concurrency = concurrency;
-    this.counter = concurrency;
-    this.timeout = timeout;
-    this.size = size;
-    this.queue = [];
-    this.empty = true;
+    this.#concurrency = concurrency;
+    this.#counter = concurrency;
+    this.#timeout = timeout;
+    this.#size = size;
   }
 
   async enter() {
     return new Promise((resolve, reject) => {
-      if (this.counter > 0) {
-        this.counter--;
+      if (this.#counter > 0) {
+        this.#counter--;
         this.empty = false;
         resolve();
         return;
       }
-      if (this.queue.length >= this.size) {
+      if (this.#queue.length >= this.#size) {
         reject(new Error('Semaphore queue is full'));
         return;
       }
       const waiting = { resolve, timer: null };
       waiting.timer = setTimeout(() => {
         waiting.resolve = null;
-        this.queue.shift();
-        const { counter, concurrency } = this;
-        this.empty = this.queue.length === 0 && counter === concurrency;
+        this.#queue.shift();
+        this.empty = this.#queue.length === 0 && this.#counter === this.#concurrency;
         reject(new Error('Semaphore timeout'));
-      }, this.timeout);
-      this.queue.push(waiting);
+      }, this.#timeout);
+      this.#queue.push(waiting);
       this.empty = false;
     });
   }
 
   leave() {
-    if (this.queue.length === 0) {
-      this.counter++;
-      this.empty = this.counter === this.concurrency;
+    if (this.#queue.length === 0) {
+      this.#counter++;
+      this.empty = this.#counter === this.#concurrency;
       return;
     }
-    const { resolve, timer } = this.queue.shift();
+    const { resolve, timer } = this.#queue.shift();
     clearTimeout(timer);
     if (resolve) setTimeout(resolve, 0);
-    const { counter, concurrency } = this;
-    this.empty = this.queue.length === 0 && counter === concurrency;
+    this.empty = this.#queue.length === 0 && this.#counter === this.#concurrency;
   }
 }
 

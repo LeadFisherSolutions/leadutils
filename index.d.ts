@@ -83,7 +83,16 @@ export const crypto: {
   validatePassword: (pass: string, hash: string) => Promise<boolean>;
 };
 
-export class Semaphore {
+export const pp: {
+  Semaphore: Semaphore;
+};
+
+export const async: {
+  timeout: (msec: number, signal?: EventEmitter) => Promise<void>;
+  delay: (msec: number, signal?: EventEmitter) => Promise<void>;
+};
+
+class Semaphore {
   constructor(concurrency: number, size?: number, timeout?: number);
   concurrency: number;
   counter: number;

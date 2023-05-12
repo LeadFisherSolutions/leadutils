@@ -1,3 +1,5 @@
+'use strict';
+
 const setDefault = (target, defaultValue) =>
   new Proxy(target, {
     get(obj, key) {

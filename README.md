@@ -89,6 +89,20 @@ utils.time.datesDiff(new Date(), tomorrow); // 1
 utils.time.datesDiff(new Date(), tomorrow, 'hour'); // 24
 ```
 
+### pp
+
+- #### Semaphore
+
+Semaphore for limit concurrency accessing limited resource
+
+```ts
+class Semaphore(concurrency: number, size?: number, timeout?: number){
+  empty: boolean;
+  enter: Promise<boolean>;
+  leave: void;
+}
+```
+
 ### utils
 
 - #### random
@@ -143,6 +157,35 @@ const utils = require('leadutils');
 utils.utils.timeTaken((a, b) => a + b)(2 + 3); // return 5; log => timeTaken: 0.297ms
 ```
 
+### async
+
+```ts
+function delay(msec: number, signal?: EventEmitter): Promise<void>;
+function timeout(msec: number, signal?: EventEmitter): Promise<void>;
+```
+
+- #### delay
+
+Promise resolve after provided msec, with abort controller
+
+```javascript
+const utils = require('leadutils');
+utils.async.delay('10s').then(() => console.log('after delay'));
+```
+
+- #### timeout
+
+Promise resolve if signal was passed in provided ms, else reject
+
+```ts
+function delay(msec: number, signal?: EventEmitter): Promise<void>;
+```
+
+```javascript
+const utils = require('leadutils');
+utils.async.delay('10s').then(() => console.log('after delay'));
+```
+
 ### net
 
 - #### intIP
@@ -164,13 +207,13 @@ let cookie = 'test=123;';
 utils.net.parseCookie(cookie); // {test: 123}
 ```
 
-- #### parseHost
+- #### removePort
 
 Parse cookie from string
 
 ```javascript
 const utils = require('leadutils');
-utils.net.parseHost('https://leadfisher.ru/api/test'); // https://leadfisher.ru
+utils.net.removePort('https://leadfisher.ru/api/test'); // https://leadfisher.ru
 ```
 
 ### xml
