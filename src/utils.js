@@ -13,6 +13,8 @@ const shuffle = arr => {
   return arr;
 };
 
+const sample = arr => arr[Math.floor(Math.random() * arr.length)];
+
 const range = (from, to) => new Array(to - from + 1).fill(1).map(() => ((from += 1), from - 1));
 
 const equals = (a, b) => {
@@ -51,4 +53,4 @@ const prettyBytes = (num, precision = 3, addSpace = true) => {
   return (num < 0 ? '-' : '') + n + (addSpace ? ' ' : '') + UNITS[exponent];
 };
 
-module.exports = { prettyBytes, random, equals, mostPerformant, timeTaken, shuffle, range };
+module.exports = { prettyBytes, random, equals, mostPerformant, timeTaken, shuffle, range, sample };

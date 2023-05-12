@@ -12,7 +12,7 @@ console.log(utils.time.prettify('h:m:s / D.M|Y', new Date())); // 18:50:54 / 07.
 
 <details>
 
-  <summary width="100%" align="center">Time module | <b>.time</b></summary>
+  <summary width="100%" align="center">Time module | <b>.time</b></summary><br/>
 
 - **(prettify)** Return date in any string format
 
@@ -84,7 +84,7 @@ utils.time.datesDiff(new Date(), tomorrow, 'hour'); // 24
 
 <details>
 
-<summary width="100%" align="center">Parallel programming module | <b>.pp</b></summary>
+<summary width="100%" align="center">Parallel programming module | <b>.pp</b></summary><br/>
 
 **(Semaphore)** for limit concurrency accessing limited resource
 
@@ -99,13 +99,22 @@ class Semaphore(concurrency: number, size?: number, timeout?: number){
 </details><br/>
 
 <details>
-  <summary width="100%" align="center">Different utils module | <b>.utils</b></summary>
+  <summary width="100%" align="center">Different utils module | <b>.utils</b></summary><br/>
 
 - **(shuffle)** Shuffle array
 
 ```javascript
 const utils = require('leadutils');
 utils.array.shuffle([1, 2, 3]); // ~[2,3,1]
+```
+
+- **(sample)** Get sample from array
+
+```javascript
+const utils = require('leadutils');
+utils.array.sample([1, 2, 3]); // ~2
+utils.array.sample([1, 2, 3]); // ~3
+utils.array.sample([1, 2, 3]); // ~2
 ```
 
 - **(range)** Creates array from range
@@ -160,7 +169,7 @@ utils.utils.timeTaken((a, b) => a + b)(2 + 3); // return 5; log => timeTaken: 0.
 </details><br/>
 
 <details>
-  <summary width="100%" align="center">Async programming module | <b>.async</b></summary>
+  <summary width="100%" align="center">Async programming module | <b>.async</b></summary><br/>
 
 ```ts
 function delay(msec: number, signal?: EventEmitter): Promise<void>;
@@ -188,7 +197,13 @@ utils.async.delay('10s').then(() => console.log('after delay'));
 </details><br/>
 
 <details>
-  <summary width="100%" align="center">Network utils module | <b>.net</b></summary>
+  <summary width="100%" align="center">Network utils module | <b>.net</b></summary><br/>
+
+- **(receiveBody)** Stream body receiver
+
+```ts
+function receiveBody(stream: IncomingMessage): Promise<Buffer | null>;
+```
 
 - **(createXML)** Create XML response
 
@@ -226,7 +241,7 @@ utils.net.removePort('https://leadfisher.ru/api/test'); // https://leadfisher.ru
 </details><br/>
 
 <details>
-  <summary width="100%" align="center">String manipulations utils | <b>.string</b></summary>
+  <summary width="100%" align="center">String manipulations utils | <b>.string</b></summary><br/>
 
 - **(escape, escapeHTML, unescapeHTML)** Escape unfriendly characters
 
@@ -314,7 +329,7 @@ utils.string.isValidJSON({}); // false
 </details><br/>
 
 <details>
-  <summary width="100%" align="center">Objects manipulation utils | <b>.obj</b></summary>
+  <summary width="100%" align="center">Objects manipulation utils | <b>.obj</b></summary><br/>
 
 - **(deepClone)** Clone object with all nested objects, no reference copies
 
@@ -364,7 +379,7 @@ console.dir(bar); // 2;
 </details><br/>
 
 <details>
-  <summary width="100%" align="center">Object orientated programming | <b>.oop</b></summary>
+  <summary width="100%" align="center">Object orientated programming | <b>.oop</b></summary><br/>
 
 - **(setDefault)** Overload operator `[]` to return default value if key not fount in object
 
@@ -405,7 +420,7 @@ utils.oop.mixin(test, { bus: { foo: 4 }, foo: 3 });
 </details><br/>
 
 <details>
-  <summary width="100%" align="center">Functional programming | <b>.fp</b></summary>
+  <summary width="100%" align="center">Functional programming | <b>.fp</b></summary><br/>
 
 - **(pipe, pipeAsync)** Combine multiple functions into one
 
@@ -492,7 +507,7 @@ setTimeout(() => throttleTest(), 1000);
 </details><br/>
 
 <details>
-  <summary width="100%" align="center">Crypto utils | <b>.crypto</b></summary>
+  <summary width="100%" align="center">Crypto utils | <b>.crypto</b></summary><br/>
 
 - **(hashPassword)** Asynchronous password hashing
 

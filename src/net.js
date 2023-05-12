@@ -28,4 +28,10 @@ const createXML = (result = '') => ({
   get: frame(result),
 });
 
-module.exports = { intIP, parseCookie, removePort, createXML };
+const receiveBody = async stream => {
+  const chunks = [];
+  for await (const chunk of stream) chunks.push(chunk);
+  return Buffer.concat(chunks);
+};
+
+module.exports = { intIP, parseCookie, removePort, createXML, receiveBody };
