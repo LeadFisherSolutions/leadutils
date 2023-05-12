@@ -41,6 +41,15 @@ const toString = value => {
   return String(value);
 };
 
+const jsonParse = buffer => {
+  if (buffer.length === 0) return null;
+  try {
+    return JSON.parse(buffer);
+  } catch {
+    return null;
+  }
+};
+
 const isValidJSON = str => {
   try {
     JSON.parse(str);
@@ -74,4 +83,5 @@ module.exports = {
   reverse,
   phonePrettify,
   unescapeHTML,
+  jsonParse,
 };

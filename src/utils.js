@@ -5,6 +5,16 @@ const random = (min, max) => {
   return a + Math.floor(Math.random() * (b - a + 1));
 };
 
+const shuffle = arr => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
+
+const range = (from, to) => new Array(to - from + 1).fill(1).map(() => ((from += 1), from - 1));
+
 const equals = (a, b) => {
   if (a === b) return true;
   if (a instanceof Date && b instanceof Date) return a.getTime() === b.getTime();
@@ -41,4 +51,4 @@ const prettyBytes = (num, precision = 3, addSpace = true) => {
   return (num < 0 ? '-' : '') + n + (addSpace ? ' ' : '') + UNITS[exponent];
 };
 
-module.exports = { prettyBytes, random, equals, mostPerformant, timeTaken };
+module.exports = { prettyBytes, random, equals, mostPerformant, timeTaken, shuffle, range };

@@ -2,8 +2,6 @@
 type XMLBuilder = { add: (url: { loc: string; time: string; priority: string }) => XMLBuilder; get: () => string };
 type MAP = { [k: string]: unknown };
 
-export const xml: { createXML: (result: string) => XMLBuilder };
-
 export const time: {
   compare: (fn: (a: number, b: number) => boolean) => (a: Date, b: Date) => boolean;
   datePrettify: (format: string, date: Date | number | string) => string;
@@ -13,12 +11,9 @@ export const time: {
   duration: (time: string) => number;
 };
 
-export const array: {
+export const utils: {
   shuffle: <T>(arr: Array<T>) => Array<T>;
   range: (from: number, to: number) => Array<number>;
-};
-
-export const utils: {
   random: (min: number, max?: number) => number;
   equals: (a: unknown, b: unknown) => boolean;
   mostPerformant: (fns: Function[], iterations?: number) => number;
@@ -76,6 +71,7 @@ export const net: {
   intIP: (ip: string) => number;
   parseCookie: (cookie: string) => object;
   removePort: (str: string) => string;
+  createXML: (result: string) => XMLBuilder;
 };
 
 export const crypto: {
