@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+const path = require('node:path');
 
 const HTML_ESCAPE_REGEXP = new RegExp(/[&<>"']/, 'g');
 const HTML_ESCAPED_REGEXP = new RegExp(/&amp;|&lt;|&gt;|&#39;|&quot;/g, 'g');
