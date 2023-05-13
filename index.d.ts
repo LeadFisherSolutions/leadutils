@@ -48,7 +48,7 @@ export const obj: {
 };
 
 export const oop: {
-  mixin: (target: object, source: object) => unknown;
+  mixin: (target: object, source: object) => object;
   defineSetter: (target: object) => (name: string, callback: (value: unknown) => void) => void;
   defineGetter: (target: object) => (name: string, callback: () => unknown) => void;
   setDefault: <T>(target: T, defaultValue: any) => T;

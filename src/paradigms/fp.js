@@ -2,8 +2,12 @@
 
 // prettier-ignore
 const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
-const curry = (fn, arity = fn.length, ...args) =>
-  arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args);
+// prettier-ignore
+const curry = (fn, arity = fn.length, ...args) => arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args);
+// prettier-ignore
+const pipeAsync = (...fns) => arg => fns.reduce((p, f) => p.then(f), Promise.resolve(arg));
+// prettier-ignore
+const chain = ctx => func => (...args) => (func(...args), ctx);
 
 const debounce = (fn, ms = 0) => {
   let timeoutId;
@@ -41,12 +45,6 @@ const once = fn => {
   };
 };
 
-const chain = ctx => func =>
-  function (...args) {
-    func(...args);
-    return ctx;
-  };
-
 const memoize = fn => {
   const cache = new Map();
   const cached = function (...args) {
@@ -60,8 +58,6 @@ const memoize = fn => {
   cached.cache = cache;
   return cached;
 };
-// prettier-ignore
-const pipeAsync = (...fns) => arg => fns.reduce((p, f) => p.then(f), Promise.resolve(arg));
 
 const times = (n, fn, context = undefined) => {
   let i = 0;

@@ -4,6 +4,8 @@ const crypto = require('node:crypto');
 
 const SCRYPT_PARAMS = { N: 32768, r: 8, p: 1, maxmem: 64 * 1024 * 1024 };
 const SCRYPT_PREFIX = '$scrypt$N=32768,r=8,p=1,maxmem=67108864$';
+const SALT_LEN = 32;
+const KEY_LEN = 64;
 
 const serializeHash = (hash, salt) => {
   const saltString = salt.toString('base64').split('=')[0];
@@ -12,13 +14,9 @@ const serializeHash = (hash, salt) => {
 };
 
 const parseOptions = options => {
-  const values = [];
+  let k, v;
   const items = options.split(',');
-  for (const item of items) {
-    const [key, val] = item.split('=');
-    values.push([key, Number(val)]);
-  }
-  return Object.fromEntries(values);
+  return Object.fromEntries(items.reduce((a, item) => (([k, v] = item.split('=')), a.push([k, Number(v)]), a), []));
 };
 
 const deserializeHash = phcString => {
@@ -30,22 +28,12 @@ const deserializeHash = phcString => {
   return { params, salt, hash };
 };
 
-const SALT_LEN = 32;
-const KEY_LEN = 64;
-
-const hashPassword = password =>
+const hashPassword = pass =>
   new Promise((resolve, reject) => {
     crypto.randomBytes(SALT_LEN, (err, salt) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      crypto.scrypt(password, salt, KEY_LEN, SCRYPT_PARAMS, (err, hash) => {
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve(serializeHash(hash, salt));
+      if (err) return reject(err);
+      return void crypto.scrypt(pass, salt, KEY_LEN, SCRYPT_PARAMS, (err, hash) => {
+        err ? reject(err) : resolve(serializeHash(hash, salt));
       });
     });
   });
@@ -53,13 +41,7 @@ const hashPassword = password =>
 const validatePassword = (password, serHash) => {
   const { params, salt, hash } = deserializeHash(serHash);
   return new Promise((resolve, reject) => {
-    const callback = (err, hashedPassword) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-      resolve(crypto.timingSafeEqual(hashedPassword, hash));
-    };
+    const callback = (err, hashed) => void (err ? reject(err) : resolve(crypto.timingSafeEqual(hashed, hash)));
     crypto.scrypt(password, salt, hash.length, params, callback);
   });
 };
