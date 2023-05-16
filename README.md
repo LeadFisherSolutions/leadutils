@@ -1,4 +1,4 @@
-<h1 align="center">[Node js] Common.js | Universal task scripts</h1>
+<h1 align="center">Leadfisher common library</h1>
 
 <h2 align="center"> Usage</h2>
 
