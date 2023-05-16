@@ -1,6 +1,12 @@
 <h1 align="center">Leadfisher common library</h1>
 
-<h2 align="center"> Usage</h2>
+<h2 align="center">Installation</h2>
+
+```npm
+npm i leadutils --save
+```
+
+<h2 align="center">Usage</h2>
 
 ```javascript
 const utils = require('leadutils');
