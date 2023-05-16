@@ -10,7 +10,7 @@ console.log(utils.time.prettify('h:m:s / D.M|Y', new Date())); // 18:50:54 / 07.
 
 <h2 align="center"> Modules</h2>
 
-<details>
+<details open>
 
   <summary width="100%" align="center">Time module | <b>.time</b></summary><br/>
 
