@@ -18,7 +18,7 @@ console.log(utils.time.prettify('h:m:s / D.M|Y', new Date())); // 18:50:54 / 07.
 
 <details open>
 
-  <summary width="100%" align="center">Time module | <b>.time</b></summary><br/>
+  <summary width="100%">Time module | <b>.time</b></summary><br/>
 
 - **(prettify)** Return date in any string format
 
@@ -86,11 +86,11 @@ utils.time.datesDiff(new Date(), tomorrow); // 1
 utils.time.datesDiff(new Date(), tomorrow, 'hour'); // 24
 ```
 
-</details><br/>
+</details>
 
 <details>
 
-<summary width="100%" align="center">Parallel programming module | <b>.pp</b></summary><br/>
+<summary width="100%">Parallel programming module | <b>.pp</b></summary><br/>
 
 **(Semaphore)** for limit concurrency accessing limited resource
 
@@ -102,10 +102,10 @@ class Semaphore(concurrency: number, size?: number, timeout?: number){
 }
 ```
 
-</details><br/>
+</details>
 
 <details>
-  <summary width="100%" align="center">Different utils module | <b>.utils</b></summary><br/>
+  <summary width="100%">Different utils module | <b>.utils</b></summary><br/>
 
 - **(shuffle)** Shuffle array
 
@@ -172,10 +172,10 @@ const utils = require('leadutils');
 utils.utils.timeTaken((a, b) => a + b)(2 + 3); // return 5; log => timeTaken: 0.297ms
 ```
 
-</details><br/>
+</details>
 
 <details>
-  <summary width="100%" align="center">Async programming module | <b>.async</b></summary><br/>
+  <summary width="100%">Async programming module | <b>.async</b></summary><br/>
 
 ```ts
 function delay(msec: number, signal?: EventEmitter): Promise<void>;
@@ -200,10 +200,10 @@ const utils = require('leadutils');
 utils.async.delay('10s').then(() => console.log('after delay'));
 ```
 
-</details><br/>
+</details>
 
 <details>
-  <summary width="100%" align="center">Network utils module | <b>.net</b></summary><br/>
+  <summary width="100%">Network utils module | <b>.net</b></summary><br/>
 
 - **(receiveBody)** Stream body receiver
 
@@ -244,10 +244,10 @@ const utils = require('leadutils');
 utils.net.removePort('https://leadfisher.ru/api/test'); // https://leadfisher.ru
 ```
 
-</details><br/>
+</details>
 
 <details>
-  <summary width="100%" align="center">String manipulations utils | <b>.string</b></summary><br/>
+  <summary width="100%">String manipulations utils | <b>.string</b></summary><br/>
 
 - **(escape, escapeHTML, unescapeHTML)** Escape unfriendly characters
 
@@ -332,10 +332,10 @@ utils.string.jsonParse(123); // null
 utils.string.isValidJSON({}); // false
 ```
 
-</details><br/>
+</details>
 
 <details>
-  <summary width="100%" align="center">Objects manipulation utils | <b>.obj</b></summary><br/>
+  <summary width="100%">Objects manipulation utils | <b>.obj</b></summary><br/>
 
 - **(deepClone)** Clone object with all nested objects, no reference copies
 
@@ -382,10 +382,10 @@ const bar = utils.obj.dig('bar', test);
 console.dir(bar); // 2;
 ```
 
-</details><br/>
+</details>
 
 <details>
-  <summary width="100%" align="center">Object orientated programming | <b>.oop</b></summary><br/>
+  <summary width="100%">Object orientated programming | <b>.oop</b></summary><br/>
 
 - **(setDefault)** Overload operator `[]` to return default value if key not fount in object
 
@@ -423,10 +423,10 @@ utils.oop.mixin(test, { bus: { foo: 4 }, foo: 3 });
 // test = { foo: { boo: { bar: 2 } }, bus: { foo: 4 } }
 ```
 
-</details><br/>
+</details>
 
 <details>
-  <summary width="100%" align="center">Functional programming | <b>.fp</b></summary><br/>
+  <summary width="100%">Functional programming | <b>.fp</b></summary><br/>
 
 - **(pipe, pipeAsync)** Combine multiple functions into one
 
@@ -510,10 +510,10 @@ setTimeout(() => throttleTest(), 1000);
 // working
 ```
 
-</details><br/>
+</details>
 
 <details>
-  <summary width="100%" align="center">Crypto utils | <b>.crypto</b></summary><br/>
+  <summary width="100%">Crypto utils | <b>.crypto</b></summary><br/>
 
 - **(hashPassword)** Asynchronous password hashing
 
@@ -533,7 +533,7 @@ utils.crypto.validatePassword('secret', hash).then(flag => console.log(flag)); /
 utils.crypto.validatePassword('hacker', hash).then(flag => console.log(flag)); // false
 ```
 
-</details><br/>
+</details>
 
 <h2 align="center">Copyright & contributors</h2>
 
