@@ -528,3 +528,11 @@ utils.crypto.validatePassword('hacker', hash).then(flag => console.log(flag)); /
 ```
 
 </details><br/>
+
+<h2 align="center">Copyright & contributors</h2>
+
+<p align="center">
+Copyright © 2023 <a href="https://github.com/LeadFisherSolutions/Leadutils/graphs/contributors">Leadfisher contributors</a>.
+Leadutils is <a href="./LICENSE">MIT licensed license</a>.<br/>
+Leadutils is one of <a href="https://github.com/LeadFisherSolutions">leadfisher solutions</a>.
+</p>
