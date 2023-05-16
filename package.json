@@ -9,8 +9,9 @@
   "main": "index.js",
   "types": "index.d.ts",
   "keywords": [
-    "utils",
-    "tools",
+    "nodejs",
+    "utilities",
+    "zero-dependencies",
     "javascript",
     "common",
     "leadfisher"
