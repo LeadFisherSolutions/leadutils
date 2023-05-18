@@ -8,13 +8,15 @@ npm i leadutils --save
 
 <h2 align="center">Usage</h2>
 
+- **The module** divided into submodules, for example here you can see work with submodule <code>time</code>.
+
 ```javascript
 const utils = require('leadutils');
 // const { time, obj, string, time, net, crypto, utils, oop, fp, pp, async } = utils;
 console.log(utils.time.prettify('h:m:s / D.M|Y', new Date())); // 18:50:54 / 07.05|2023
 ```
 
-<h2 align="center"> Modules</h2>
+<h2 align="center">Modules</h2>
 
 <details open>
 
