@@ -9,7 +9,8 @@
   "main": "index.js",
   "types": "index.d.ts",
   "browser": {
-    "./index.js": "./dist/index.js"
+    "./index.js": "./dist/index.js",
+    "./index.d.ts": "./dist/index.d.ts"
   },
   "keywords": [
     "nodejs",
