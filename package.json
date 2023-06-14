@@ -8,6 +8,9 @@
   "type": "commonjs",
   "main": "index.js",
   "types": "index.d.ts",
+  "browser": {
+    "./index.js": "./dist/index.js"
+  },
   "keywords": [
     "nodejs",
     "utilities",
